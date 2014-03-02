@@ -1,6 +1,8 @@
 """ Support Dependent AutoCompleteSelectFields. """
 __version__ = "0.1.0"
 
+from uuid import uuid4
+
 from django.conf import settings
 from django.http import HttpResponse
 
@@ -60,3 +62,24 @@ class register_channel_name(object):
             klass.__module__, klass.__name__
         )
         return klass
+
+def generate_dom_id():
+    """
+    Generates some random, unlikely DOM ID.
+    """
+    return str(uuid4())
+
+def get_dom_id(field):
+    """
+    Extract the DOM ID from the widget of the given field.
+
+    render() may take in attrs which override the extracted property. It
+    is unclear when this would happen, but if things break, look at how
+    the upstream Widget's render() is called in situ.
+    """
+    dom_id = field.widget.attrs.get('id', None)
+    if not dom_id:
+        dom_id = generate_dom_id()
+        # this bit might be unfriendly. Force the Widget to have an ID.
+        field.widget.attrs['id'] = dom_id
+    return dom_id
