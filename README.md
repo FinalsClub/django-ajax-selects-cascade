@@ -76,15 +76,15 @@ I would put these into the models file, but it is flexible.
         # make.
         class PhoneModelForm(ModelForm):
             # AutoCompleteDependentSelectField('channel', kwargs)
-            name = AutoCompleteSelectField('ajax_autocomplete_phonemodel',
-                                           dependsOn=PhoneMakeForm.name)
+            name = AutoCompleteDependentSelectField('ajax_autocomplete_phonemodel',
+                                                    dependsOn=PhoneMakeForm.name)
 
         # Choose phone series from the subset of series available for the given
         # model.
         class PhoneSeriesForm(ModelForm):
             # AutoCompleteDependentSelectField('channel', kwargs)
-            name = AutoCompleteSelectField('ajax_autocomplete_phoneseries',
-                                           dependsOn=PhoneModelForm.name)
+            name = AutoCompleteDependentSelectField('ajax_autocomplete_phoneseries',
+                                                    dependsOn=PhoneModelForm.name)
 
 ## Forms (long hand)
 
@@ -112,8 +112,8 @@ I would put these into the models file, but it is flexible.
         class PhoneModelForm(ModelForm):
             # AutoCompleteDependentSelectField('channel', widget)
             # AutoCompleteDependentSelectWidget('channel', attrs)
-            name = AutoCompleteSelectField('ajax_autocomplete_phonemodel',
-                widget=AutoCompleteSelectWidget(
+            name = AutoCompleteDependentSelectField('ajax_autocomplete_phonemodel',
+                widget=AutoCompleteDependentSelectWidget(
                     'ajax_autocomplete_phonemodel',
                     attrs={
                         # For anyone who cares, I am a model
@@ -132,8 +132,8 @@ I would put these into the models file, but it is flexible.
         class PhoneSeriesForm(ModelForm):
             # AutoCompleteDependentSelectField('channel', widget)
             # AutoCompleteDependentSelectWidget('channel', attrs)
-            name = AutoCompleteSelectField('ajax_autocomplete_phoneseries',
-                widget=AutoCompleteSelectWidget(
+            name = AutoCompleteDependentSelectField('ajax_autocomplete_phoneseries',
+                widget=AutoCompleteDependentSelectWidget(
                     'ajax_autocomplete_phoneseries', attrs={
                         # My returned data depends on the phone model
                         'data-upstream-id': 'dom_autocomplete_phonemodel'
