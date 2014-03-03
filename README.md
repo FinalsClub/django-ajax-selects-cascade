@@ -5,10 +5,6 @@ another AutoCompleteSelectField.
 
 Requires django-ajax-selects in the Django environment.
 
-It's not very pretty to code yet, but it is functional. Some upstream changes
-will need to be made with django-ajax-selects to streamline some of the
-ugliness in here.
-
 # Installation
 
 In `settings.py`:
