@@ -8,12 +8,13 @@ Requires django-ajax-selects in the Django environment.
 # Installation
 
 In `settings.py`:
+
 ``` python
-INSTALLED_APPS = (
-   ...
-   'ajax_select',
-   'ajax_select_cascade',
-   ...
+        INSTALLED_APPS = (
+        ...
+        'ajax_select',
+        'ajax_select_cascade',
+        ...
 ```
 
 # Use
@@ -25,6 +26,7 @@ Read the form data as per usual Django methods.
 
 I would put these into the models file, but it is flexible.
 
+``` python
         from ajax_select import LookupChannel
         from ajax_select_cascade import DependentLookupChannel
         from ajax_select_cascade import register_channel_name
@@ -61,9 +63,11 @@ I would put these into the models file, but it is flexible.
                 # Filter the query against PhoneSeries.name
                 # after filtering the dependency against PhoneModel.
                 return self.model.objects.filter(model__id=dependency, name=q)
+```
 
 ## Forms
 
+``` python
         from ajax_select.fields import AutoCompleteSelectField
         from ajax_select_cascade.fields import AutoCompleteDependentSelectField
 
@@ -85,9 +89,11 @@ I would put these into the models file, but it is flexible.
             # AutoCompleteDependentSelectField('channel', kwargs)
             name = AutoCompleteDependentSelectField('ajax_autocomplete_phoneseries',
                                                     dependsOn=PhoneModelForm.name)
+```
 
 ## Forms (long hand)
 
+``` python
         from ajax_select.fields import AutoCompleteSelectField
         from ajax_select.fields import AutoCompleteSelectWidget
         from ajax_select_cascade.fields import AutoCompleteDependentSelectField
@@ -143,3 +149,4 @@ I would put these into the models file, but it is flexible.
         
             class Meta:
                 model = PhoneModel
+```
