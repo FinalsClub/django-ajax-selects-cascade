@@ -21,7 +21,7 @@ INSTALLED_APPS = (
 Here's an example to choose a phone's make, model, and series.
 Read the form data as per usual Django methods.
 
-## RelativeLookupChannel and Channel Decorator
+## DependentLookupChannel and Channel Decorator
 
 I would put these into the models file, but it is flexible.
 
