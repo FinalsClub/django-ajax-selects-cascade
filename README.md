@@ -74,6 +74,8 @@ I would put these into the models file, but it is flexible.
         # Choose phone make from all available phone makes
         class PhoneMakeForm(Form):
             # AutoCompleteSelectField('channel')
+            # note that this field is not accessed as PhoneMakeForm.name,
+            # but as PhoneMakeForm.declared_fields['name'] :(
             name = AutoCompleteSelectField('ajax_autocomplete_phonemake')
 
         # Choose phone model from the subset of models available for the given
@@ -81,14 +83,14 @@ I would put these into the models file, but it is flexible.
         class PhoneModelForm(ModelForm):
             # AutoCompleteDependentSelectField('channel', kwargs)
             name = AutoCompleteDependentSelectField('ajax_autocomplete_phonemodel',
-                                                    dependsOn=PhoneMakeForm.name)
+                                   dependsOn=PhoneMakeForm.declared_fields['name'])
 
         # Choose phone series from the subset of series available for the given
         # model.
         class PhoneSeriesForm(ModelForm):
             # AutoCompleteDependentSelectField('channel', kwargs)
             name = AutoCompleteDependentSelectField('ajax_autocomplete_phoneseries',
-                                                    dependsOn=PhoneModelForm.name)
+                                   dependsOn=PhoneModelForm.declared_fields['name'])
 ```
 
 ## Forms (long hand)
